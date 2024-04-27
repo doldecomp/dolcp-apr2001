@@ -17,7 +17,7 @@ Currently this repository supports building the following libraries:
 | control      | :x: |
 | geoPalette   | :x: |
 | lighting     | :x: |
-| shader       | :x: |
+| shader       | :warning: |
 | skinning     | :heavy_check_mark: |
 
 ## Preparation
