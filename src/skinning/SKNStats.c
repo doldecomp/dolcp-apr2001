@@ -12,9 +12,6 @@ char *StatNames[6] = {
     "SKN_FLUSH "
 };
 
-// functions
-void SKNPrintStats(void);
-
 void SKNPrintStats(void) {
     u32 i;
     u32 total = 0; // doesnt appear to be used?
