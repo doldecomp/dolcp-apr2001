@@ -238,7 +238,7 @@ typedef struct {
     /* 0x00 */ GXTexCoordID coord[8];
     /* 0x20 */ struct SHDRTexCoord *tcShader[8];
     /* 0x40 */ struct SHDRShader *textureShader[8];
-} SHDRResources;
+} SHDRTCResources;
 
 typedef struct {
     /* 0x00 */ void * colorStages;
@@ -248,8 +248,55 @@ typedef struct {
     /* 0x10 */ void * texGen;
 } SHDRInfo;
 
+typedef struct {
+    /* 0x00 */ enum SHADER_COLOR_TYPE TEVArg[4];
+    /* 0x10 */ GXTevOp op;
+    /* 0x14 */ GXTevBias bias;
+    /* 0x18 */ GXTevScale scale;
+    /* 0x1C */ u8 clamp;
+    /* 0x20 */ GXTevClampMode mode;
+    /* 0x24 */ enum SHADER_COLOR_TYPE out_reg;
+    /* 0x28 */ enum SHADER_RAS rasInput;
+    /* 0x2C */ u8 texGenIdx;
+    /* 0x30 */ enum SHADER_TEX texInput;
+} SHDRStage;
+
+typedef struct {
+    /* 0x00 */ enum SHADER_COLOR regColor[4];
+    /* 0x10 */ enum SHADER_COLOR regAlpha[4];
+    /* 0x20 */ u8 colorUsed[4];
+    /* 0x24 */ GXColor colorData[4];
+    /* 0x34 */ u8 textureUsed[8];
+    /* 0x3C */ GXTexObj * textureData[8];
+    /* 0x5C */ u8 rasUsed[2];
+    /* 0x60 */ GXChannelID rasData[2];
+    /* 0x68 */ u8 complexUsed[8];
+    /* 0x70 */ SHDRInfo * complexData[8];
+} SHDRRas;
+
+enum SHADER_REG {
+    SHADER_REG_EMPTY = 0,
+    SHADER_REG_CONSTANTCOLOR = 1,
+    SHADER_REG_INUSE = 2,
+};
+
+typedef struct {
+    /* 0x00 */ enum SHADER_REG regColorState[4];
+    /* 0x10 */ enum SHADER_COLOR regColor[4];
+    /* 0x20 */ enum SHADER_COLOR_TYPE colorIdList[4];
+    /* 0x30 */ struct SHDRShader * colorSrc[4];
+    /* 0x40 */ u8 colorLifetime[4];
+    /* 0x44 */ enum SHADER_REG regAlphaState[4];
+    /* 0x54 */ enum SHADER_COLOR regAlpha[4];
+    /* 0x64 */ enum SHADER_COLOR_TYPE alphaIdList[4];
+    /* 0x74 */ struct SHDRShader * alphaSrc[4];
+    /* 0x84 */ u8 alphaLifetime[4];
+    /* 0x88 */ GXTexObj * texObj[8];
+    /* 0xA8 */ GXTexMapID mapIdList[8];
+} SHDRResources;
+
 // shaderTCInternals.c
-extern SHDRResources TCResources;
+extern SHDRTCResources TCResources;
 extern u32 MtxIDArray[8];
 
 void CompileTexGen(struct SHDRShader *shader, SHDRExp **exp);
@@ -259,5 +306,8 @@ void SetTCGenState(SHDRInfo *shader);
 struct SHDRTexCoord * SHDRCreateTexCoordExpression(enum SHADER_TG_SRC src, struct SHDRTexCoord *shadSrc, enum SHADER_TG_TYPE texGenType, enum SHADER_MTX mtxInput);
 struct SHDRTexCoord * SHDRCreateTCPassThrough(enum SHADER_TG_SRC src);
 void SHDRFreeTC(struct SHDRTexCoord * texCoord);
+
+// unsorted externs
+extern SHDRResources Resources;
 
 #endif // _DOLPHIN_CP_SHADER_H_
