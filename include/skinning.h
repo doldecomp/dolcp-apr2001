@@ -96,6 +96,11 @@ typedef struct {
 extern sAccBuffers SKAccBuffers[2];
 extern void * SKBuffers[4];
 
+void SKNIt(sBone **bones, sHdr *hdr);
+void SKNInit(void);
+void SKNBzero32B(void * base, u32 size);
+void SKNLCBzero(void * base, u32 size);
+
 // SKNStats.c
 extern sStats SKNStatistics[6];
 extern char *StatNames[6];

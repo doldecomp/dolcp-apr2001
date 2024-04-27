@@ -1,19 +1,13 @@
 #include <dolphin.h>
 #include "skinning.h"
 
-// .bss
-sAccBuffers SKAccBuffers[2]; // size: 0x18, address: 0x0
-void * SKBuffers[4]; // size: 0x10, address: 0x18
+sAccBuffers SKAccBuffers[2];
+void * SKBuffers[4];
 
-// .sbss
-static u32 Frames; // size: 0x4, address: 0x0
+static u32 Frames;
 
 // functions
 static void SKNFlushByIndex(s16 * indices, u32 count, s16 * base);
-void SKNIt(sBone **bones, sHdr *hdr);
-void SKNInit(void);
-void SKNBzero32B(void * base, u32 size);
-void SKNLCBzero(void * base, u32 size);
 
 asm static void SKNFlushByIndex(register s16 * indices, register u32 count, register s16 * base) {
     nofralloc
@@ -31,12 +25,12 @@ loop:
 }
 
 void SKNIt(sBone **bones, sHdr *hdr) {
-    u32 i; // r30
-    u32 vnsize; // r24
-    u16 blocks[2]; // r1+0x10
-    SK1List *curr1; // r27
-    SK2List *curr2; // r28
-    SKAccList *currA; // r26
+    u32 i;
+    u32 vnsize;
+    u16 blocks[2];
+    SK1List *curr1;
+    SK2List *curr2;
+    SKAccList *currA;
 
     PPCMtmmcr1(0);
     PPCMtmmcr0(0);
