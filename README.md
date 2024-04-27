@@ -18,7 +18,7 @@ Currently this repository supports building the following libraries:
 | geoPalette   | :x: |
 | lighting     | :x: |
 | shader       | :x: |
-| skinning     | :warning: |
+| skinning     | :heavy_check_mark: |
 
 ## Preparation
 

@@ -92,6 +92,16 @@ typedef struct {
 
 #define GQR_SCALE_MAX 32
 
+// GQRSetup.c
+void GQRSetup0(u32 loadScale, u32 loadType, u32 storeScale, u32 storeType);
+void GQRSetup1(u32 loadScale, u32 loadType, u32 storeScale, u32 storeType);
+void GQRSetup2(u32 loadScale, u32 loadType, u32 storeScale, u32 storeType);
+void GQRSetup3(u32 loadScale, u32 loadType, u32 storeScale, u32 storeType);
+void GQRSetup4(u32 loadScale, u32 loadType, u32 storeScale, u32 storeType);
+void GQRSetup5(u32 loadScale, u32 loadType, u32 storeScale, u32 storeType);
+void GQRSetup6(u32 loadScale, u32 loadType, u32 storeScale, u32 storeType);
+void GQRSetup7(u32 loadScale, u32 loadType, u32 storeScale, u32 storeType);
+
 // SKNControl.c
 extern sAccBuffers SKAccBuffers[2];
 extern void * SKBuffers[4];
