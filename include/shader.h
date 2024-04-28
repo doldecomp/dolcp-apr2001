@@ -295,6 +295,39 @@ typedef struct {
     /* 0xA8 */ GXTexMapID mapIdList[8];
 } SHDRResources;
 
+enum SHADER_TEV {
+    SHADER_TEV_COLOR = 0,
+    SHADER_TEV_ALPHA = 1,    
+};
+
+enum SHADER_LERP_TYPE {
+    SHADER_TRIVIAL = 0,
+    SHADER_SIMPLE = 1,
+    SHADER_LERP = 2,
+};
+
+struct ShaderTEVStage {
+    /* 0x00 */ enum SHADER_TEV channel;
+    /* 0x04 */ enum SHADER_TYPE type;
+    /* 0x08 */ struct ShaderTEVStage * parent[8];
+    /* 0x28 */ u8 numParents;
+    /* 0x29 */ u8 numNonAllocatedChildren;
+    /* 0x2C */ enum SHADER_COLOR_TYPE TEVArg[4];
+    /* 0x3C */ struct ShaderTEVStage * tevStage[4];
+    /* 0x4C */ GXTevOp op;
+    /* 0x50 */ GXTevBias bias;
+    /* 0x54 */ GXTevScale scale;
+    /* 0x58 */ u8 clamp;
+    /* 0x5C */ GXTevClampMode mode;
+    /* 0x60 */ enum SHADER_COLOR_TYPE out_reg;
+    /* 0x64 */ enum SHADER_RAS rasInput;
+    /* 0x68 */ u8 texGenIdx;
+    /* 0x6C */ enum SHADER_TEX texInput;
+    /* 0x70 */ enum SHADER_LERP_TYPE LERPType;
+    /* 0x74 */ u8 outputIndex;
+    /* 0x78 */ enum SHADER_COLOR_TYPE outputArg;
+};
+
 // shaderTCInternals.c
 extern SHDRTCResources TCResources;
 extern u32 MtxIDArray[8];
