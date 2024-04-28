@@ -328,6 +328,9 @@ struct ShaderTEVStage {
     /* 0x78 */ enum SHADER_COLOR_TYPE outputArg;
 };
 
+// shaderPrint.c
+void PrintTEVTree(SHDRInfo *shader);
+
 // shaderPruneTree.c
 extern struct ShaderTEVStage CollapsedTEVPool[33];
 extern u8 OptimalTreeSize;
