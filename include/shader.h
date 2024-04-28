@@ -328,6 +328,32 @@ struct ShaderTEVStage {
     /* 0x78 */ enum SHADER_COLOR_TYPE outputArg;
 };
 
+// shaderPruneTree.c
+extern struct ShaderTEVStage CollapsedTEVPool[33];
+extern u8 OptimalTreeSize;
+
+void PruneTEVTree(void);
+
+// shaderResManage.c
+extern SHDRResources Resources;
+
+extern u32 TEVCounter;
+extern u8 BestNumTEVStages;
+
+extern struct ShaderTEVStage * AlphaInstructions[16];
+extern struct ShaderTEVStage * ColorInstructions[16];
+extern struct ShaderTEVStage TEVPool[50];
+extern struct ShaderTEVStage BestAlphaInstructions[16];
+extern struct ShaderTEVStage BestColorInstructions[16];
+
+void ResetShaderResources(void);
+enum SHADER_COLOR_TYPE AllocateColorResource(enum SHADER_COLOR color);
+enum SHADER_COLOR_TYPE AllocateAlphaResource(enum SHADER_COLOR color);
+GXTexMapID AllocateTextureResource(GXTexObj *tex);
+u8 CheckResourceCollision(struct ShaderTEVStage * stage, struct ShaderTEVStage * parent);
+u8 CheckResourceAllocation(void);
+void InitCompiledResourceInfo(SHDRRas *res);
+
 // shaderTCInternals.c
 extern SHDRTCResources TCResources;
 extern u32 MtxIDArray[8];
@@ -341,6 +367,6 @@ struct SHDRTexCoord * SHDRCreateTCPassThrough(enum SHADER_TG_SRC src);
 void SHDRFreeTC(struct SHDRTexCoord * texCoord);
 
 // unsorted externs
-extern SHDRResources Resources;
+void FlattenTEVTree(void);
 
 #endif // _DOLPHIN_CP_SHADER_H_

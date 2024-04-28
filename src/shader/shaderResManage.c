@@ -41,15 +41,8 @@ struct ShaderTEVStage BestAlphaInstructions[16]; // size: 0x7C0, address: 0x840
 struct ShaderTEVStage BestColorInstructions[16]; // size: 0x7C0, address: 0x80
 
 // functions
-void ResetShaderResources(void);
-enum SHADER_COLOR_TYPE AllocateColorResource(enum SHADER_COLOR color);
-enum SHADER_COLOR_TYPE AllocateAlphaResource(enum SHADER_COLOR color);
-GXTexMapID AllocateTextureResource(GXTexObj *tex);
-u8 CheckResourceCollision(struct ShaderTEVStage * stage, struct ShaderTEVStage * parent);
-u8 CheckResourceAllocation(void);
 static u8 FindInstructionLifetime(struct ShaderTEVStage * stage, u8 index);
 static u8 AllocateIntermediateRegister(enum SHADER_REG *regState, u8 *regLifetime, u8 time, u8 lifetime);
-void InitCompiledResourceInfo(SHDRRas *res);
 
 void ResetShaderResources(void) {
     u8 i;
