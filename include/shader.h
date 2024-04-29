@@ -328,6 +328,10 @@ struct ShaderTEVStage {
     /* 0x78 */ enum SHADER_COLOR_TYPE outputArg;
 };
 
+// shaderFlattenTree.c
+void FlattenTEVTree(void);
+void CopyCompiledTEVStages(SHDRStage *compiled, struct ShaderTEVStage * instructions, unsigned long numStages, SHDRRas *resources);
+
 // shaderPrint.c
 void PrintTEVTree(SHDRInfo *shader);
 
