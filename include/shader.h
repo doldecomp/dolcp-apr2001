@@ -328,6 +328,22 @@ struct ShaderTEVStage {
     /* 0x78 */ enum SHADER_COLOR_TYPE outputArg;
 };
 
+// shaderExecute.c
+extern void * MtxDataArray[8];
+extern struct TexCoordExp TexExpPool[8];
+extern SHDRRas CurrentShaderResources;
+extern enum SHADER_REG CurrentColorState[4];
+extern enum SHADER_REG CurrentAlphaState[4];
+extern SHDRStage CompiledTEVColorPool[16];
+extern SHDRStage CompiledTEVAlphaPool[16];
+
+extern u8 CompiledTEVCounter;
+extern u8 CurrentTexExp;
+extern u8 MtxUsed[8];
+
+void CheckShaderBindings(SHDRInfo *shader);
+void CombineTEVStages(SHDRInfo *shader);
+
 // shaderFlattenTree.c
 void FlattenTEVTree(void);
 void CopyCompiledTEVStages(SHDRStage *compiled, struct ShaderTEVStage * instructions, unsigned long numStages, SHDRRas *resources);

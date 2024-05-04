@@ -1,19 +1,17 @@
 #include <dolphin.h>
 #include "shader.h"
 
-// .bss
-void * MtxDataArray[8]; // size: 0x20, address: 0x0
-struct TexCoordExp TexExpPool[8]; // size: 0x80, address: 0x20
-SHDRRas CurrentShaderResources; // size: 0x90, address: 0xA0
-enum SHADER_REG CurrentColorState[4]; // size: 0x10, address: 0x130
-enum SHADER_REG CurrentAlphaState[4]; // size: 0x10, address: 0x140
-SHDRStage CompiledTEVColorPool[16]; // size: 0x340, address: 0x150
-SHDRStage CompiledTEVAlphaPool[16]; // size: 0x340, address: 0x490
+void * MtxDataArray[8];
+struct TexCoordExp TexExpPool[8];
+SHDRRas CurrentShaderResources;
+enum SHADER_REG CurrentColorState[4];
+enum SHADER_REG CurrentAlphaState[4];
+SHDRStage CompiledTEVColorPool[16];
+SHDRStage CompiledTEVAlphaPool[16];
 
-// .sbss
-u8 CompiledTEVCounter = 0; // size: 0x1, address: 0x0
-u8 CurrentTexExp; // size: 0x1, address: 0xC
-u8 MtxUsed[8]; // size: 0x8, address: 0x4
+u8 CompiledTEVCounter = 0;
+u8 CurrentTexExp;
+u8 MtxUsed[8];
 
 // functions
 void CheckShaderBindings(SHDRInfo *shader);
