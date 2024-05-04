@@ -361,6 +361,9 @@ u8 CheckResourceCollision(struct ShaderTEVStage * stage, struct ShaderTEVStage *
 u8 CheckResourceAllocation(void);
 void InitCompiledResourceInfo(SHDRRas *res);
 
+// shaderSetTEV.c
+void SetTEV(SHDRInfo *shader);
+
 // shaderTCInternals.c
 extern SHDRTCResources TCResources;
 extern u32 MtxIDArray[8];

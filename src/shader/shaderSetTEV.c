@@ -27,7 +27,6 @@ static int RAS0used;
 static int RAS1used;
 
 // functions
-void SetTEV(SHDRInfo *shader);
 static void LoadTextures(SHDRRas *res);
 static void LoadColors(SHDRRas *res);
 static void ShaderSetTEVOrder(SHDRStage *colorStage, SHDRStage *alphaStage, SHDRRas *res, u8 id);
