@@ -328,6 +328,29 @@ struct ShaderTEVStage {
     /* 0x78 */ enum SHADER_COLOR_TYPE outputArg;
 };
 
+// shader.c
+extern SHDRInfo *SHDRPassThruShader;
+extern SHDRInfo *SHDRReplaceShader;
+extern SHDRInfo *SHDRModulateShader;
+extern struct SHDRShader * ShaderOne;
+extern struct SHDRShader * ShaderZero;
+extern struct SHDRShader * ShaderHalf;
+extern struct SHDRShader * ShaderQuarter;
+
+struct SHDRShader *SHDRCreateTexture(enum SHADER_TEX tex, struct SHDRTexCoord * texCoordShader, enum SHADER_CHANNEL channel);
+struct SHDRShader *SHDRCreateRasterized(enum SHADER_RAS rasColor, enum SHADER_CHANNEL channel);
+struct SHDRShader *SHDRCreateColor(enum SHADER_COLOR color, enum SHADER_CHANNEL channel);
+struct SHDRShader *SHDRCreateComplexInput(enum SHADER_COMPLEX input, enum SHADER_CHANNEL channel);
+struct SHDRShader *SHDRCreateComplex(struct SHDRShader * input1, struct SHDRShader * input2, struct SHDRShader * input3, struct SHDRShader * input4, enum SHADER_OP op, enum SHADER_CLAMP clamp, enum SHADER_BIAS bias, enum SHADER_SCALE scale, enum SHADER_CHANNEL channel);
+void SHDRFree(struct SHDRShader * shader);
+SHDRInfo *SHDRCompile(struct SHDRShader * rgbShader, struct SHDRShader * aShader);
+void SHDRExecute(SHDRInfo *shader);
+void SHDRBindTexture(SHDRInfo *shader, enum SHADER_TEX tex, GXTexObj *texObj);
+void SHDRBindRasterized(SHDRInfo *shader, enum SHADER_RAS rasColor, GXChannelID channel);
+void SHDRBindColor(SHDRInfo *shader, enum SHADER_COLOR colorInput, GXColor color);
+void SHDRBindComplexInput(SHDRInfo *shader, enum SHADER_COMPLEX input, SHDRInfo *inputShader);
+void SHDRBindTexGenMtx(SHDRInfo *shader, enum SHADER_MTX input, MtxPtr mtxData);
+
 // shaderBuildTree.c
 extern struct SHDRShader * RGBRoot;
 
