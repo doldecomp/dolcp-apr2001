@@ -328,6 +328,11 @@ struct ShaderTEVStage {
     /* 0x78 */ enum SHADER_COLOR_TYPE outputArg;
 };
 
+// shaderBuildTree.c
+extern struct SHDRShader * RGBRoot;
+
+int BuildTEVTree(struct SHDRShader * rgbShader, struct SHDRShader * aShader, void * compiledTexGen);
+
 // shaderExecute.c
 extern void * MtxDataArray[8];
 extern struct TexCoordExp TexExpPool[8];
@@ -393,6 +398,6 @@ struct SHDRTexCoord * SHDRCreateTCPassThrough(enum SHADER_TG_SRC src);
 void SHDRFreeTC(struct SHDRTexCoord * texCoord);
 
 // unsorted externs
-void FlattenTEVTree(void);
+extern struct SHDRShader *ShaderZero;
 
 #endif // _DOLPHIN_CP_SHADER_H_
