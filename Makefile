@@ -111,7 +111,7 @@ TARGET_LIBS_DEBUG := $(addprefix baserom/,$(addsuffix .a,$(TARGET_LIBS_DEBUG)))
 default: all
 
 # TODO: Start decomp
-all: $(DTK) skinning.a skinningD.a shader.a shaderD.a
+all: $(DTK) skinning.a skinningD.a shader.a shaderD.a lighting.a lightingD.a
 
 verify: build/release/test.bin build/debug/test.bin build/verify.sha1
 	@sha1sum -c build/verify.sha1
@@ -172,6 +172,10 @@ skinningD.a : $(addprefix $(BUILD_DIR)/debug/,$(skinning_c_files:.c=.o))
 shader_c_files := $(wildcard src/shader/*.c)
 shader.a  : $(addprefix $(BUILD_DIR)/release/,$(shader_c_files:.c=.o))
 shaderD.a : $(addprefix $(BUILD_DIR)/debug/,$(shader_c_files:.c=.o))
+
+lighting_c_files := $(wildcard src/lighting/*.c)
+lighting.a  : $(addprefix $(BUILD_DIR)/release/,$(lighting_c_files:.c=.o))
+lightingD.a : $(addprefix $(BUILD_DIR)/debug/,$(lighting_c_files:.c=.o))
 
 %.bin: %.elf
 	$(OBJCOPY) -O binary $< $@

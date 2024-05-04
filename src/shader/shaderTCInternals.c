@@ -2,7 +2,7 @@
 #include <dolphin/gx.h>
 #include "shader.h"
 
-SHDRResources TCResources = {
+SHDRTCResources TCResources = {
     // coord[8]
     {
         GX_TEXCOORD0,
