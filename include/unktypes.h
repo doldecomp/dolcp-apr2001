@@ -6,6 +6,8 @@
 #include <dolphin.h>
 #include <dolphin/gx.h>
 
+#include "charPipeline/texPalette.h"
+
 typedef struct {
     /* 0x00 */ char *positionArray;
     /* 0x04 */ u16 numPositions;
@@ -21,39 +23,12 @@ typedef struct {
 } ColorData;
 
 typedef struct {
-    /* 0x00 */ u16 height;
-    /* 0x02 */ u16 width;
-    /* 0x04 */ u32 format;
-    /* 0x08 */ char * data;
-    /* 0x0C */ GXTexWrapMode wrapS;
-    /* 0x10 */ GXTexWrapMode wrapT;
-    /* 0x14 */ GXTexFilter minFilter;
-    /* 0x18 */ GXTexFilter magFilter;
-    /* 0x1C */ f32 LODBias;
-    /* 0x20 */ u8 edgeLODEnable;
-    /* 0x21 */ u8 minLOD;
-    /* 0x22 */ u8 maxLOD;
-    /* 0x23 */ u8 unpacked;
-} TextureHeader;
-
-typedef struct {
-    /* 0x00 */ u16 numEntries;
-    /* 0x02 */ u8 unpacked;
-    /* 0x03 */ u8 pad8;
-    /* 0x04 */ GXTlutFmt format;
-    /* 0x08 */ char * data;
-} CLUTHeader;
-
-typedef struct {
-    /* 0x00 */ TextureHeader * textureHeader;
-    /* 0x04 */ CLUTHeader * CLUTHeader;
-} DescriptorArray;
-
-typedef struct {
     /* 0x00 */ u32 versionNumber;
-    /* 0x04 */ u32 numDescriptors;
-    /* 0x08 */ DescriptorArray * descriptorArray;
-} TexturePalette;
+    /* 0x04 */ u32 userDataSize;
+    /* 0x08 */ void *userData;
+    /* 0x0C */ u32 numDescriptors;
+    /* 0x10 */ TEXDescriptorPtr descriptorArray;
+} TEXPaletteData, *TEXPaletteDataPtr;
 
 typedef struct {
     /* 0x00 */ char * textureCoordArray;
@@ -61,7 +36,7 @@ typedef struct {
     /* 0x06 */ u8 quantizeInfo;
     /* 0x07 */ u8 compCount;
     /* 0x08 */ char * texturePaletteName;
-    /* 0x0C */ TexturePalette * texturePalette;
+    /* 0x0C */ TEXPalettePtr texturePalette;
 } TextureData;
 
 typedef struct {
