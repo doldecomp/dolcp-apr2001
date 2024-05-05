@@ -20,4 +20,10 @@ struct DODisplayObj {
     /* 0x50 */ void *shaderData;
 };
 
+extern u8 normalTableQuantizeInfo;
+extern u8 normalTableNumComponents;
+extern u16 normalTableNumNormals;
+
+extern f32 normalTable[252][3];
+
 #endif // _DOLPHIN_CP_GEOPALETTE_H_
