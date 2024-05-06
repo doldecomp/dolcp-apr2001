@@ -1,5 +1,5 @@
 #include <dolphin.h>
-#include "skinning.h"
+#include "geoPalette.h"
 
 // functions
 static void __MTGQR0(u32 val);

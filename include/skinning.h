@@ -1,7 +1,6 @@
 #ifndef _DOLPHIN_CP_SKINNING_H_
 #define _DOLPHIN_CP_SKINNING_H_
 
-#include "geoPalette.h"
 #include "anim.h"
 
 typedef struct _sStats {
