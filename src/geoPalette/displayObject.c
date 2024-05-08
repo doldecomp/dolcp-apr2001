@@ -1,7 +1,5 @@
 #include <dolphin.h>
-#include "geoPalette.h"
-#include "shader.h"
-#include "light.h"
+#include "charPipeline.h"
 #include "charPipeline/texPalette.h"
 #include "charPipeline/fileCache.h"
 

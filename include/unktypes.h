@@ -63,7 +63,7 @@ typedef struct {
     /* 0x0A */ u16 pad16;
 } DisplayData;
 
-typedef struct {
+typedef struct _KeyFrame {
     /* 0x00 */ f32 time;
     /* 0x04 */ char * setting;
     /* 0x08 */ char * interpolation;
@@ -75,25 +75,5 @@ typedef struct {
     /* 0x08 */ char * Parent;
     /* 0x0C */ char * Children;
 } Branch;
-
-typedef struct {
-    /* 0x00 */ Vec s;
-    /* 0x0C */ Quaternion r;
-    /* 0x1C */ Vec t;
-} Srt;
-
-typedef union {
-    /* 0x00 */ Srt srt;
-    /* 0x00 */ struct {
-        /* 0x00 */ Mtx m;
-    } mtx;
-} ControlParams;
-
-typedef struct {
-    /* 0x00 */ u8 type;
-    /* 0x01 */ u8 pad8;
-    /* 0x02 */ u16 pad16;
-    /* 0x04 */ ControlParams controlParams;
-} Control;
 
 #endif // _DOLPHIN_CP_UNKTYPES_H_

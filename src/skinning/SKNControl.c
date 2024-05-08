@@ -1,5 +1,5 @@
 #include <dolphin.h>
-#include "skinning.h"
+#include "charPipeline.h"
 
 sAccBuffers SKAccBuffers[2];
 void * SKBuffers[4];

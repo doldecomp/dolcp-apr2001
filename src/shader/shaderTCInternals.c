@@ -1,6 +1,6 @@
 #include <dolphin.h>
 #include <dolphin/gx.h>
-#include "shader.h"
+#include "charPipeline.h"
 
 SHDRTCResources TCResources = {
     // coord[8]

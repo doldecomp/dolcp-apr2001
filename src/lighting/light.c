@@ -1,7 +1,5 @@
 #include <dolphin.h>
-#include "light.h"
-#include "anim.h"
-#include "control.h"
+#include "charPipeline.h"
 
 // functions
 void LITAlloc(Light **light);

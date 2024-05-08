@@ -1,5 +1,5 @@
 #include <dolphin.h>
-#include "geoPalette.h"
+#include "charPipeline.h"
 
 u8 normalTableQuantizeInfo = 64;
 u8 normalTableNumComponents = 3;

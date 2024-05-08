@@ -1,5 +1,5 @@
 #include <dolphin.h>
-#include "shader.h"
+#include "charPipeline.h"
 
 GXTexCoordID coordIDArray[8] = {
     GX_TEXCOORD0,

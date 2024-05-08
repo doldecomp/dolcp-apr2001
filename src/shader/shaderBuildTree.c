@@ -1,5 +1,5 @@
 #include <dolphin.h>
-#include "shader.h"
+#include "charPipeline.h"
 
 static struct SHDRShader tempRGBRoot = {
     // type

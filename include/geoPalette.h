@@ -2,8 +2,6 @@
 #define _DOLPHIN_CP_GEOPALETTE_H_
 
 #include "unktypes.h"
-#include "skinning.h"
-#include "charPipeline/texPalette.h"
 
 enum DOTextureState {
     DOTS_WRAP_S = 0,
@@ -101,7 +99,7 @@ void DOSetEffectsShader(struct DODisplayObj *dispObj, char *shaderFunc, char *da
 void DOOverrideTextureState(enum DOTextureState state, enum DOTextureSetting setting, f32 LODValue);
 
 // geoPalette.c
-sHdr *GEOGetPalette(TEXPaletteData **pal, char *name);
+struct sHdr *GEOGetPalette(TEXPaletteData **pal, char *name);
 void GEOReleasePalette(TEXPaletteData **pal);
 u32 GEOGetUserDataSize(TEXPaletteData *pal);
 char *GEOGetUserData(TEXPaletteData *pal);

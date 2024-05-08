@@ -1,11 +1,9 @@
 #ifndef _DOLPHIN_CP_ANIM_H_
 #define _DOLPHIN_CP_ANIM_H_
 
-#include "unktypes.h"
-
 struct ANIMAnimTrack {
     /* 0x00 */ f32 animTime;
-    /* 0x04 */ KeyFrame * keyFrames;
+    /* 0x04 */ struct _KeyFrame * keyFrames;
     /* 0x08 */ u16 totalFrames;
     /* 0x0A */ u16 trackID;
     /* 0x0C */ u8 quantizeInfo;
@@ -18,7 +16,7 @@ struct ANIMPipe {
     /* 0x00 */ f32 time;
     /* 0x04 */ f32 speed;
     /* 0x08 */ struct ANIMAnimTrack * currentTrack;
-    /* 0x0C */ Control * control;
+    /* 0x0C */ struct Control * control;
     /* 0x10 */ u8 replaceHierarchyCtrl;
 };
 
@@ -42,7 +40,7 @@ typedef struct {
 
 // unsorted externs
 ANIMSequences *ANIMGetSequence(ANIMBank *animBank, char *sequenceName, u16 seqNum);
-void ANIMBind(struct ANIMPipe *animPipe, Control *control, struct ANIMAnimTrack *track, f32 time);
+void ANIMBind(struct ANIMPipe *animPipe, struct Control *control, struct ANIMAnimTrack *track, f32 time);
 void ANIMTick(struct ANIMPipe *animPipe);
 
 #endif // _DOLPHIN_CP_ANIM_H_

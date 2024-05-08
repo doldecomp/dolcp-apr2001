@@ -1,5 +1,5 @@
 #include <dolphin.h>
-#include "shader.h"
+#include "charPipeline.h"
 
 static SHDRStage ModulateColorTEVStage = {
     // TEVArg[4]

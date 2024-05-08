@@ -1,8 +1,6 @@
 #ifndef _DOLPHIN_CP_SKINNING_H_
 #define _DOLPHIN_CP_SKINNING_H_
 
-#include "anim.h"
-
 typedef struct _sStats {
     /* 0x00 */ u32 cycles[2];
     /* 0x08 */ u32 loadStores[2];
@@ -74,7 +72,7 @@ typedef struct {
     /* 0x42 */ u16 count;
 } SKAccList;
 
-typedef struct {
+typedef struct sHdr {
     /* 0x00 */ u16 numSk1List;
     /* 0x02 */ u16 numSk2List;
     /* 0x04 */ u16 numSkAccList;

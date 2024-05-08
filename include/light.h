@@ -4,15 +4,13 @@
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 
-#include "unktypes.h"
-
 enum PARENT_TYPE {
     PARENT_BONE = 0,
     PARENT_DISP_OBJ = 1,
     PARENT_MTX = 2,
 };
 
-typedef struct {
+typedef struct Light {
     /* 0x00 */ GXLightObj lt_obj;
     /* 0x40 */ Vec position;
     /* 0x4C */ Vec worldPosition;

@@ -1,5 +1,5 @@
 #include <dolphin.h>
-#include "geoPalette.h"
+#include "charPipeline.h"
 
 // functions
 static void __MTGQR0(u32 val);

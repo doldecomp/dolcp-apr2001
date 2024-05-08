@@ -1,5 +1,5 @@
 #include <dolphin.h>
-#include "skinning.h"
+#include "charPipeline.h"
 
 sStats SKNStatistics[6];
 

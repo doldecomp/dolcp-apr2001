@@ -1,5 +1,5 @@
 #include <dolphin.h>
-#include "shader.h"
+#include "charPipeline.h"
 
 static struct ShaderTEVStage * Children[32];
 static struct ShaderTEVStage * Parents[32];

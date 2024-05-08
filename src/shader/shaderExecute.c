@@ -1,5 +1,5 @@
 #include <dolphin.h>
-#include "shader.h"
+#include "charPipeline.h"
 
 void * MtxDataArray[8];
 struct TexCoordExp TexExpPool[8];

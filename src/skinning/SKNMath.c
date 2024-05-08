@@ -1,5 +1,6 @@
 #include <dolphin.h>
 #include <dolphin/mtx.h>
+#include "charPipeline.h"
 
 #define qr0 0
 #define qr6 6
