@@ -83,6 +83,23 @@ typedef struct {
     /* 0x10 */ DODescriptorPtr descriptorArray;
 } DODisplayData, *DODisplayDataPtr;
 
+// displayObject.c
+extern u32 HackTevState;
+extern int CPEnableMultiTexture;
+
+void DORelease(struct DODisplayObj * * dispObj);
+Mtx *DOGetWorldMatrix(struct DODisplayObj * dispObj);
+void DOHide(struct DODisplayObj * dispObj);
+void DORender(struct DODisplayObj * dispObj, MtxPtr camera, u8 numLights, ...);
+void DOVARender(struct DODisplayObj * dispObj, MtxPtr camera, u8 numLights, va_list *list);
+void DORenderSkin(struct DODisplayObj *dispObj, MtxPtr camera, MtxPtr mtxArray, MtxPtr invTransposeMtxArray, u8 numLights, ...);
+void DOVARenderSkin(struct DODisplayObj *dispObj, MtxPtr camera, MtxPtr mtxArray, MtxPtr invTransposeMtxArray, u8 numLights, va_list *list);
+void DOSetWorldMatrix(struct DODisplayObj * dispObj, MtxPtr m);
+void DOShow(struct DODisplayObj * dispObj);
+f32 DOSetAmbientPercentage(struct DODisplayObj * dispObj, f32 percent);
+void DOSetEffectsShader(struct DODisplayObj *dispObj, char *shaderFunc, char *data);
+void DOOverrideTextureState(enum DOTextureState state, enum DOTextureSetting setting, f32 LODValue);
+
 // geoPalette.c
 sHdr *GEOGetPalette(TEXPaletteData **pal, char *name);
 void GEOReleasePalette(TEXPaletteData **pal);
