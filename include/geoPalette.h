@@ -5,6 +5,43 @@
 #include "skinning.h"
 #include "charPipeline/texPalette.h"
 
+enum DOTextureState {
+    DOTS_WRAP_S = 0,
+    DOTS_WRAP_T = 1,
+    DOTS_MIPMAP = 2,
+    DOTS_MIN_FILTER = 3,
+    DOTS_MAG_FILTER = 4,
+    DOTS_MIN_LOD = 5,
+    DOTS_MAX_LOD = 6,
+    DOTS_LOD_BIAS = 7,
+    DOTS_BIAS_CLAMP = 8,
+    DOTS_EDGE_LOD = 9,
+    DOTS_MAX_ANISO = 10,
+};
+
+enum DOTextureSetting {
+    DOTS_USEDEFAULT = -1,
+    DOTS_CLAMP = 0,
+    DOTS_REPEAT = 1,
+    DOTS_MIRROR = 2,
+    DOTS_MIPMAP_ON = 1,
+    DOTS_MIPMAP_OFF = 0,
+    DOTS_NEAR = 0,
+    DOTS_LINEAR = 1,
+    DOTS_NEAR_MIP_NEAR = 2,
+    DOTS_LIN_MIP_NEAR = 3,
+    DOTS_NEAR_MIP_LIN = 4,
+    DOTS_LIN_MIP_LIN = 5,
+    DOTS_LOD_SET = 0,
+    DOTS_BIAS_CLAMP_ON = 1,
+    DOTS_BIAS_CLAMP_OFF = 0,
+    DOTS_EDGE_LOD_ON = 1,
+    DOTS_EDGE_LOD_OFF = 0,
+    DOTS_ANISO_1 = 0,
+    DOTS_ANISO_2 = 1,
+    DOTS_ANISO_4 = 2,
+};
+
 typedef void * (*unkCB)(void *, struct DODisplayObj *, u32, void *, int, char *);
 
 typedef struct {

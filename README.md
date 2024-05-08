@@ -15,7 +15,7 @@ Currently this repository supports building the following libraries:
 | actor        | :x: |
 | anim         | :x: |
 | control      | :x: |
-| geoPalette   | :warning: |
+| geoPalette   | :heavy_check_mark: |
 | lighting     | :heavy_check_mark: |
 | shader       | :heavy_check_mark: |
 | skinning     | :heavy_check_mark: |
