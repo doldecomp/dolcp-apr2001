@@ -3,6 +3,13 @@
 
 #include <dolphin/mtx.h>
 
+// bitflags
+#define CTRL_SCALE       (1 << 0) // 0x1
+#define CTRL_ROT_EULER   (1 << 1) // 0x2
+#define CTRL_ROT_QUAT    (1 << 2) // 0x4
+#define CTRL_TRANS       (1 << 3) // 0x8
+#define CTRL_MTX         (1 << 4) // 0x10
+
 typedef struct Srt {
     /* 0x00 */ Vec s;
     /* 0x0C */ Quaternion r;
@@ -23,7 +30,17 @@ typedef struct Control {
     /* 0x04 */ ControlParams controlParams;
 } Control;
 
-// unsorted externs
-extern void CTRLBuildMatrix(struct Control *control, Mtx44Ptr m);
+// control.c
+void CTRLSetScale(Control *control, f32 x, f32 y, f32 z);
+void CTRLSetRotation(Control *control, f32 x, f32 y, f32 z);
+void CTRLSetQuat(Control *control, f32 x, f32 y, f32 z, f32 w);
+void CTRLSetTranslation(Control *control, f32 x, f32 y, f32 z);
+void CTRLSetMatrix(Control *control, MtxPtr m);
+void CTRLGetScale(Control *control, f32 *x, f32 *y, f32 *z);
+void CTRLGetRotation(Control *control, f32 *x, f32 *y, f32 *z);
+void CTRLGetQuat(Control *control, f32 *x, f32 *y, f32 *z, f32 *w);
+void CTRLGetTranslation(Control *control, f32 *x, f32 *y, f32 *z);
+void CTRLBuildMatrix(Control *control, Mtx m);
+void CTRLBuildInverseMatrix(Control *control, Mtx m);
 
 #endif // _DOLPHIN_CP_CONTROL_H_
