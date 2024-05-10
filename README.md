@@ -12,7 +12,7 @@ Currently this repository supports building the following libraries:
 
 | Library Name | Progress |
 | ------------ | ---------- |
-| actor        | :x: |
+| actor        | :warning: |
 | anim         | :heavy_check_mark: |
 | control      | :heavy_check_mark: |
 | geoPalette   | :heavy_check_mark: |

@@ -19,7 +19,7 @@ typedef struct {
     /* 0x08 */ u8 * weights;
 } sAccBuffers;
 
-typedef struct {
+typedef struct sBone {
     /* 0x00 */ u16 boneID;
     /* 0x02 */ u8 inheritanceFlag;
     /* 0x03 */ u8 drawingPriority;
@@ -34,7 +34,7 @@ typedef struct {
     /* 0x90 */ MtxPtr orientationInvMtx;
     /* 0x94 */ struct {
         /* 0x00 */ char * Prev;
-        /* 0x00 */ char * Next;
+        /* 0x04 */ char * Next;
     } drawPriorityLink;
 } sBone;
 

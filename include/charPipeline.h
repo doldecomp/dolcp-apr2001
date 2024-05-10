@@ -3,6 +3,7 @@
 
 #include <dolphin.h>
 
+#include "actor.h"
 #include "anim.h"
 #include "control.h"
 #include "geoPalette.h"
