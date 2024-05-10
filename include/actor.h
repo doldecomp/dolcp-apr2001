@@ -23,6 +23,16 @@ typedef struct {
 } ActorLayout;
 
 typedef struct {
+    /* 0x00 */ Control * orientationCtrl;
+    /* 0x04 */ DSBranch branch;
+    /* 0x14 */ u16 geoFileID;
+    /* 0x16 */ u16 boneID;
+    /* 0x18 */ u8 inheritanceFlag;
+    /* 0x19 */ u8 drawingPriority;
+    /* 0x1A */ u16 pad16;
+} ActorBone;
+
+typedef struct {
     /* 0x00 */ ActorLayout *layout;
     /* 0x04 */ u16 actorID;
     /* 0x06 */ u16 totalBones;
@@ -38,6 +48,21 @@ typedef struct {
     /* 0x60 */ DSList drawPriorityList;
     /* 0x6C */ sHdr * skHeader;
 } Actor;
+
+// actor.c
+void ACTGet(Actor **actor, char *name);
+void ACTRelease(Actor **actor);
+void ACTRender(Actor *actor, MtxPtr camera, u8 numLights, ...);
+void ACTHide(Actor *actor);
+void ACTShow(Actor *actor);
+void ACTBuildMatrices(Actor *actor);
+Control *ACTGetControl(Actor *actor);
+void ACTSetInheritance(Actor *actor, u8 inheritanceFlag);
+void ACTSetAmbientPercentage(Actor *actor, f32 percent);
+void ACTSort(Actor *actor);
+void ACTSetEffectsShader(Actor *actor, char *shaderFunc, char *data);
+u32 ACTGetUserDataSize(Actor *actor);
+char *ACTGetUserData(Actor *actor);
 
 // actorAnim.c
 void ACTSetAnimation(Actor *actor, ANIMBank *animBank, char *sequenceName, u16 seqNum, f32 time);

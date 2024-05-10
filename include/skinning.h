@@ -23,7 +23,7 @@ typedef struct sBone {
     /* 0x00 */ u16 boneID;
     /* 0x02 */ u8 inheritanceFlag;
     /* 0x03 */ u8 drawingPriority;
-    /* 0x04 */ Branch branch;
+    /* 0x04 */ DSBranch branch;
     /* 0x14 */ struct DODisplayObj * dispObj;
     /* 0x18 */ Control orientationCtrl;
     /* 0x4C */ Control animationCtrl;
