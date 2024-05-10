@@ -63,7 +63,7 @@ typedef struct {
     /* 0x0A */ u16 pad16;
 } DisplayData;
 
-typedef struct _KeyFrame {
+typedef struct KeyFrame {
     /* 0x00 */ f32 time;
     /* 0x04 */ char * setting;
     /* 0x08 */ char * interpolation;

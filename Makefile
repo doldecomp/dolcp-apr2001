@@ -111,7 +111,7 @@ TARGET_LIBS_DEBUG := $(addprefix baserom/,$(addsuffix .a,$(TARGET_LIBS_DEBUG)))
 default: all
 
 # TODO: Start decomp
-all: $(DTK) skinning.a skinningD.a shader.a shaderD.a lighting.a lightingD.a geoPalette.a geoPaletteD.a control.a controlD.a
+all: $(DTK) skinning.a skinningD.a shader.a shaderD.a lighting.a lightingD.a geoPalette.a geoPaletteD.a control.a controlD.a anim.a animD.a
 
 verify: build/release/test.bin build/debug/test.bin build/verify.sha1
 	@sha1sum -c build/verify.sha1
@@ -184,6 +184,10 @@ geoPaletteD.a : $(addprefix $(BUILD_DIR)/debug/,$(geoPalette_c_files:.c=.o))
 control_c_files := $(wildcard src/control/*.c)
 control.a  : $(addprefix $(BUILD_DIR)/release/,$(control_c_files:.c=.o))
 controlD.a : $(addprefix $(BUILD_DIR)/debug/,$(control_c_files:.c=.o))
+
+anim_c_files := $(wildcard src/anim/*.c)
+anim.a  : $(addprefix $(BUILD_DIR)/release/,$(anim_c_files:.c=.o))
+animD.a : $(addprefix $(BUILD_DIR)/debug/,$(anim_c_files:.c=.o))
 
 %.bin: %.elf
 	$(OBJCOPY) -O binary $< $@

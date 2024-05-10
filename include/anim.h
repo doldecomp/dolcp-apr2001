@@ -1,9 +1,12 @@
 #ifndef _DOLPHIN_CP_ANIM_H_
 #define _DOLPHIN_CP_ANIM_H_
 
+typedef struct Control Control;
+typedef struct KeyFrame KeyFrame;
+
 struct ANIMAnimTrack {
     /* 0x00 */ f32 animTime;
-    /* 0x04 */ struct _KeyFrame * keyFrames;
+    /* 0x04 */ struct KeyFrame * keyFrames;
     /* 0x08 */ u16 totalFrames;
     /* 0x0A */ u16 trackID;
     /* 0x0C */ u8 quantizeInfo;
@@ -20,14 +23,14 @@ struct ANIMPipe {
     /* 0x10 */ u8 replaceHierarchyCtrl;
 };
 
-typedef struct {
+typedef struct ANIMSequences {
     /* 0x00 */ char *sequenceName;
     /* 0x04 */ struct ANIMAnimTrack *trackArray;
     /* 0x08 */ u16 totalTracks;
     /* 0x0A */ u16 pad16;
 } ANIMSequences;
 
-typedef struct {
+typedef struct ANIMBank {
     /* 0x00 */ u32 versionNumber;
     /* 0x04 */ ANIMSequences *animSequences;
     /* 0x08 */ u16 bankID;
@@ -38,9 +41,14 @@ typedef struct {
     /* 0x14 */ void * userData;
 } ANIMBank;
 
+// animPipe.c
+void ANIMBind(struct ANIMPipe *animPipe, Control *control, struct ANIMAnimTrack *animTrack, f32 time);
+void ANIMSetTime(struct ANIMPipe * animPipe, f32 time);
+void ANIMSetSpeed(struct ANIMPipe * animPipe, f32 speed);
+void ANIMTick(struct ANIMPipe * animPipe);
+
 // unsorted externs
 ANIMSequences *ANIMGetSequence(ANIMBank *animBank, char *sequenceName, u16 seqNum);
-void ANIMBind(struct ANIMPipe *animPipe, struct Control *control, struct ANIMAnimTrack *track, f32 time);
-void ANIMTick(struct ANIMPipe *animPipe);
+void ANIMGetKeyFrameFromTrack(struct ANIMAnimTrack * animTrack /* r30 */, f32 time, KeyFrame **currentFrame, KeyFrame **nextFrame);
 
 #endif // _DOLPHIN_CP_ANIM_H_
