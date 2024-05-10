@@ -41,14 +41,19 @@ typedef struct ANIMBank {
     /* 0x14 */ void * userData;
 } ANIMBank;
 
+// animBank.c
+void ANIMGet(ANIMBank **animBank, char *name);
+void ANIMRelease(ANIMBank **animBank);
+ANIMSequences *ANIMGetSequence(ANIMBank *animBank, char *sequenceName, u16 seqNum);
+struct ANIMAnimTrack *ANIMGetTrackFromSeq(ANIMSequences *animSeq, u16 animTrackID);
+void ANIMGetKeyFrameFromTrack(struct ANIMAnimTrack * animTrack, f32 time, KeyFrame **currentFrame, KeyFrame **nextFrame);
+u32 ANIMGetUserDataSize(ANIMBank *animBank);
+char *ANIMGetUserData(ANIMBank *animBank);
+
 // animPipe.c
 void ANIMBind(struct ANIMPipe *animPipe, Control *control, struct ANIMAnimTrack *animTrack, f32 time);
 void ANIMSetTime(struct ANIMPipe * animPipe, f32 time);
 void ANIMSetSpeed(struct ANIMPipe * animPipe, f32 speed);
 void ANIMTick(struct ANIMPipe * animPipe);
-
-// unsorted externs
-ANIMSequences *ANIMGetSequence(ANIMBank *animBank, char *sequenceName, u16 seqNum);
-void ANIMGetKeyFrameFromTrack(struct ANIMAnimTrack * animTrack /* r30 */, f32 time, KeyFrame **currentFrame, KeyFrame **nextFrame);
 
 #endif // _DOLPHIN_CP_ANIM_H_
