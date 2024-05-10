@@ -32,10 +32,7 @@ typedef struct sBone {
     /* 0x88 */ MtxPtr skinMtx;
     /* 0x8C */ MtxPtr skinInvTransposeMtx;
     /* 0x90 */ MtxPtr orientationInvMtx;
-    /* 0x94 */ struct {
-        /* 0x00 */ char * Prev;
-        /* 0x04 */ char * Next;
-    } drawPriorityLink;
+    /* 0x94 */ DSLink drawPriorityLink;
 } sBone;
 
 typedef struct {

@@ -99,11 +99,11 @@ void DOSetEffectsShader(struct DODisplayObj *dispObj, char *shaderFunc, char *da
 void DOOverrideTextureState(enum DOTextureState state, enum DOTextureSetting setting, f32 LODValue);
 
 // geoPalette.c
-struct sHdr *GEOGetPalette(TEXPaletteData **pal, char *name);
-void GEOReleasePalette(TEXPaletteData **pal);
-u32 GEOGetUserDataSize(TEXPaletteData *pal);
-char *GEOGetUserData(TEXPaletteData *pal);
-void DOGet(struct DODisplayObj **dispObj, DODisplayData *pal, u16 id, char *name);
+struct sHdr *GEOGetPalette(DODisplayDataPtr *pal, char *name);
+void GEOReleasePalette(DODisplayDataPtr *pal);
+u32 GEOGetUserDataSize(DODisplayDataPtr pal);
+char *GEOGetUserData(DODisplayDataPtr pal);
+void DOGet(struct DODisplayObj **dispObj, DODisplayDataPtr pal, u16 id, char *name);
 
 // normalTable.c
 extern u8 normalTableQuantizeInfo;

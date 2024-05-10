@@ -2,6 +2,8 @@
 #define _DOLPHIN_CP_ACTOR_H_
 
 #include "control.h"
+#include "charPipeline/structures/Tree.h"
+#include "charPipeline/structures/List.h"
 
 typedef struct DODisplayData *DODisplayDataPtr;
 typedef struct sBone sBone;
@@ -9,15 +11,10 @@ typedef struct sHdr sHdr;
 typedef struct ANIMBank ANIMBank;
 
 typedef struct {
-    /* 0x00 */ u32 Offset;
-    /* 0x04 */ char * Root;
-} Heirarchy;
-
-typedef struct {
     /* 0x00 */ u32 versionNumber;
     /* 0x04 */ u16 actorID;
     /* 0x06 */ u16 totalBones;
-    /* 0x08 */ Heirarchy hierarchy;
+    /* 0x08 */ DSTree hierarchy;
     /* 0x10 */ char * geoPaletteName;
     /* 0x14 */ u16 skinFileID;
     /* 0x16 */ u16 pad16;
@@ -26,17 +23,11 @@ typedef struct {
 } ActorLayout;
 
 typedef struct {
-    /* 0x00 */ u32 Offset;
-    /* 0x04 */ char * Head;
-    /* 0x08 */ char * Tail;
-} ActorList;
-
-typedef struct {
     /* 0x00 */ ActorLayout *layout;
     /* 0x04 */ u16 actorID;
     /* 0x06 */ u16 totalBones;
-    /* 0x08 */ Heirarchy hierarchy;
-    /* 0x10 */ DODisplayDataPtr *pal;
+    /* 0x08 */ DSTree hierarchy;
+    /* 0x10 */ DODisplayDataPtr pal;
     /* 0x14 */ struct DODisplayObj *skinObject;
     /* 0x18 */ sBone **boneArray;
     /* 0x1C */ Control worldControl;
@@ -44,7 +35,7 @@ typedef struct {
     /* 0x54 */ MtxPtr skinMtxArray;
     /* 0x58 */ MtxPtr skinInvTransposeMtxArray;
     /* 0x5C */ MtxPtr orientationInvMtxArray;
-    /* 0x60 */ ActorList drawPriorityList;
+    /* 0x60 */ DSList drawPriorityList;
     /* 0x6C */ sHdr * skHeader;
 } Actor;
 

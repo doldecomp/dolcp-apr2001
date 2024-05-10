@@ -4,13 +4,13 @@
 #include "charPipeline/fileCache.h"
 
 // functions
-static void *LoadGeoPalette(TEXPaletteData **pal, char *name);
+static void *LoadGeoPalette(DODisplayDataPtr *pal, char *name);
 static sHdr *SKNLoadFile(char *name, void *posArrayForSkin);
 static void SKNFreeFile(sHdr *skHeader);
-static void GeoPaletteFree(TEXPaletteData **pal);
+static void GeoPaletteFree(DODisplayDataPtr *pal);
 static void InitDisplayObjWithLayout(struct DODisplayObj *dispObj, DODisplayLayout *layout);
 
-sHdr *GEOGetPalette(TEXPaletteData **pal, char *name) {
+sHdr *GEOGetPalette(DODisplayDataPtr *pal, char *name) {
     sHdr *skHeader;
     void * posArrayForSkin;
     char * sknName;
@@ -47,7 +47,7 @@ sHdr *GEOGetPalette(TEXPaletteData **pal, char *name) {
     return skHeader;
 }
 
-void GEOReleasePalette(TEXPaletteData **pal) {
+void GEOReleasePalette(DODisplayDataPtr *pal) {
     if (DOCacheInitialized != 0) {
         DSReleaseCacheObj(&DODisplayCache, (Ptr)*pal);
         return;
@@ -56,19 +56,19 @@ void GEOReleasePalette(TEXPaletteData **pal) {
     *pal = NULL;
 }
 
-u32 GEOGetUserDataSize(TEXPaletteData *pal) {
+u32 GEOGetUserDataSize(DODisplayDataPtr pal) {
     ASSERTLINE(0x87, pal);
     return pal->userDataSize;
 }
 
-char *GEOGetUserData(TEXPaletteData *pal) {
+char *GEOGetUserData(DODisplayDataPtr pal) {
     ASSERTLINE(0x8E, pal);
     return pal->userData;
 }
 
-static void *LoadGeoPalette(TEXPaletteData **pal, char *name) {
+static void *LoadGeoPalette(DODisplayDataPtr *pal, char *name) {
     struct DVDFileInfo dfi;
-    TEXPaletteData * geoPal;
+    DODisplayDataPtr geoPal;
     DODisplayLayout *layout;
     u16 i;
     u16 j;
@@ -92,9 +92,9 @@ static void *LoadGeoPalette(TEXPaletteData **pal, char *name) {
     }
     geoPal->descriptorArray = (void*)((u32)geoPal->descriptorArray + (u32)geoPal);
     for(i = 0; i < geoPal->numDescriptors; i++) {
-        geoPal->descriptorArray[i].textureHeader = (void*)((u32)geoPal + (u32)geoPal->descriptorArray[i].textureHeader);
-        geoPal->descriptorArray[i].CLUTHeader = (void*)((u32)geoPal + (u32)geoPal->descriptorArray[i].CLUTHeader);
-        layout = (void*)(geoPal->descriptorArray[i].textureHeader); // what? these arent the same struct.
+        geoPal->descriptorArray[i].layout = (void*)((u32)geoPal + (u32)geoPal->descriptorArray[i].layout);
+        geoPal->descriptorArray[i].name = (void*)((u32)geoPal + (u32)geoPal->descriptorArray[i].name);
+        layout = geoPal->descriptorArray[i].layout;
         if (layout->positionData != 0) {
             layout->positionData = (void*)((u32)layout->positionData + (u32)layout);
             if (layout->positionData->positionArray) {
@@ -233,7 +233,7 @@ exit:;
     InitDisplayObjWithLayout(*dispObj, layout);
 }
 
-static void GeoPaletteFree(TEXPaletteData **pal) {
+static void GeoPaletteFree(DODisplayDataPtr *pal) {
     OSFreeToHeap(__OSCurrHeap, *pal);
     *pal = NULL;
 }
