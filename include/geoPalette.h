@@ -73,7 +73,7 @@ typedef struct {
     /* 0x04 */ char *name;
 } DODescriptor, *DODescriptorPtr;
 
-typedef struct {
+typedef struct DODisplayData {
     /* 0x00 */ u32 versionNumber;
     /* 0x04 */ u32 userDataSize;
     /* 0x08 */ void *userData;
